@@ -32,6 +32,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnRegister = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -66,17 +67,28 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Wachtwoord";
             // 
+            // btnRegister
+            // 
+            this.btnRegister.Location = new System.Drawing.Point(598, 316);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(66, 27);
+            this.btnRegister.TabIndex = 4;
+            this.btnRegister.Text = "Registreer";
+            this.btnRegister.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1185, 592);
+            this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -88,6 +100,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnRegister;
     }
 }
 
