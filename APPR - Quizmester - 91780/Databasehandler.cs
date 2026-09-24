@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,91 +22,83 @@ namespace APPR___Quizmester___91780
         string playername = string.Empty;
         int scorelistcount = 0;
 
-        public void SetOrCreateNewUsername(string username)
+        public bool UsernameExists(string username)
         {
-            FillDatatable("SELECT Playername FROM PlayerTable WHERE Playername = '" + username + "'");
+            FillDatatableParam(
+                "SELECT PlayerName FROM LoginTable WHERE PlayerName = @username",
+                new SqlParameter("@username", username));
+
+            return dataTable.Rows.Count > 0;
+        }
+
+        public bool RegisterUser(string username, string password)
+        {
+            if (UsernameExists(username))
+            {
+                return false;
+            }
+
+            string hash = HashPassword(password);
+
+            ExecuteQueryParam(
+                "INSERT INTO [dbo].[LoginTable] ([PlayerName], [Password]) VALUES (@username, @password)",
+                new SqlParameter("@username", username),
+                new SqlParameter("@password", hash));
+
+            return true;
+        }
+
+        public bool ValidateLogin(string username, string password)
+        {
+            FillDatatableParam(
+                "SELECT Password FROM LoginTable WHERE PlayerName = @username",
+                new SqlParameter("@username", username));
 
             if (dataTable.Rows.Count == 0)
             {
-                ExecuteQuery("INSERT INTO [dbo].[PlayerTable] ([Playername], [AccountCreatedDate]) VALUES (N'" + username + "', N'" + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "')");
+                return false;
             }
+
+            string storedHash = dataTable.Rows[0][0].ToString();
+            string attemptedHash = HashPassword(password);
+
+            return storedHash == attemptedHash;
         }
 
-        public void AddNewScore(TimeSpan score, string playername)
+        private string HashPassword(string password)
         {
-            ExecuteQuery("INSERT INTO [dbo].[ScoreTable] ([Testscore], [TestDateTime], [Playername]) VALUES (N'" + score + "', N'" + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "', N'" + playername + "')");
-        }
-
-        public void ShowHighScore(ListBox updateListbox)
-        {
-            updateListbox.Items.Clear();
-            scorelist = new List<Score>();
-            FillDatatable("SELECT * FROM ScoreTable");
-            if (dataTable.Rows.Count > 0)
+            using (var sha256 = SHA256.Create())
             {
-                for (int i = 0; i < dataTable.Rows.Count; i++)
-                {
-                    int scoreId = i;
-                    scoreTime = (TimeSpan)dataTable.Rows[i][1];
-                    scoreDate = (DateTime)dataTable.Rows[i][2];
-                    playername = dataTable.Rows[i][3].ToString();
-                    score = new Score(scoreId, scoreTime, scoreDate, playername);
-                    scorelist.Add(score);
-                }
-            }
-            scorelist = scorelist.OrderBy(o => o.GetScore()).ThenBy(o => o.GetDatePlayed()).ToList();
-            scorelistcount = scorelist.Count;
-
-            if (scorelistcount > 10)
-            {
-                scorelistcount = 10;
-            }
-            for (int i = 0; i < scorelistcount; i++)
-            {
-                updateListbox.Items.Add("Number: " + (i + 1));
-                updateListbox.Items.Add("Player: " + scorelist[i].GetPlayername());
-                updateListbox.Items.Add("Score: " + scorelist[i].GetScore().Seconds + ":" + scorelist[i].GetScore().Milliseconds);
-                updateListbox.Items.Add("Date played " + scorelist[i].GetDatePlayed());
-                updateListbox.Items.Add(" ");
+                byte[] bytes = Encoding.UTF8.GetBytes(password);
+                byte[] hash = sha256.ComputeHash(bytes);
+                return Convert.ToBase64String(hash);
             }
         }
 
-        public void FillDatatable(string query)
+        public void FillDatatableParam(string query, params SqlParameter[] parameters)
         {
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
-                if (conn.State == ConnectionState.Closed)
+                conn.Open();
+                using (dataTable = new DataTable("LoginTable"))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    conn.Open();
-                }
-
-                using (dataTable = new DataTable("FormulaOneDataTable"))
-                {
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        adapter.Fill(dataTable);
-                    }
+                    cmd.Parameters.AddRange(parameters);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(dataTable);
                 }
             }
         }
 
-        public void ExecuteQuery(string query)
+        public void ExecuteQueryParam(string query, params SqlParameter[] parameters)
         {
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
-                if (conn.State == ConnectionState.Closed)
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    conn.Open();
-                }
-
-                using (dataTable = new DataTable("FormulaOneDatatable"))
-                {
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        cmd.ExecuteNonQuery();
-                    }
+                    cmd.Parameters.AddRange(parameters);
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
