@@ -1,6 +1,6 @@
 ﻿namespace APPR___Quizmester___91780
 {
-    partial class Form1
+    partial class registerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -33,6 +33,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblLogin = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txbUsername
@@ -77,19 +80,50 @@
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
-            // Form1
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(461, 356);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(204, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Heb je toch al een account? Druk dan op";
+            // 
+            // lblLogin
+            // 
+            this.lblLogin.AutoSize = true;
+            this.lblLogin.ForeColor = System.Drawing.Color.Blue;
+            this.lblLogin.Location = new System.Drawing.Point(660, 356);
+            this.lblLogin.Name = "lblLogin";
+            this.lblLogin.Size = new System.Drawing.Size(47, 13);
+            this.lblLogin.TabIndex = 6;
+            this.lblLogin.Text = "inloggen";
+            this.lblLogin.Click += new System.EventHandler(this.lblLogin_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(702, 356);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(185, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "om naar de inlogscherm terug te gaan";
+            // 
+            // registerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1185, 592);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblLogin);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txbPassword);
             this.Controls.Add(this.txbUsername);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "registerForm";
+            this.Load += new System.EventHandler(this.RegisterForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,6 +136,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnRegister;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblLogin;
+        private System.Windows.Forms.Label label5;
     }
 }
 

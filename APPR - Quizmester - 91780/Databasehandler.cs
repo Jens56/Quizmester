@@ -25,7 +25,7 @@ namespace APPR___Quizmester___91780
         public bool UsernameExists(string username)
         {
             FillDatatableParam(
-                "SELECT PlayerName FROM LoginTable WHERE PlayerName = @username",
+                "SELECT PlayerName FROM PlayerTable WHERE PlayerName = @username",
                 new SqlParameter("@username", username));
 
             return dataTable.Rows.Count > 0;
@@ -41,7 +41,7 @@ namespace APPR___Quizmester___91780
             string hash = HashPassword(password);
 
             ExecuteQueryParam(
-                "INSERT INTO [dbo].[LoginTable] ([PlayerName], [Password]) VALUES (@username, @password)",
+                "INSERT INTO [dbo].[PlayerTable] ([PlayerName], [Password]) VALUES (@username, @password)",
                 new SqlParameter("@username", username),
                 new SqlParameter("@password", hash));
 
@@ -51,7 +51,7 @@ namespace APPR___Quizmester___91780
         public bool ValidateLogin(string username, string password)
         {
             FillDatatableParam(
-                "SELECT Password FROM LoginTable WHERE PlayerName = @username",
+                "SELECT Password FROM PlayerTable WHERE PlayerName = @username",
                 new SqlParameter("@username", username));
 
             if (dataTable.Rows.Count == 0)
@@ -80,7 +80,7 @@ namespace APPR___Quizmester___91780
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
-                using (dataTable = new DataTable("LoginTable"))
+                using (dataTable = new DataTable("PlayerTable"))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddRange(parameters);

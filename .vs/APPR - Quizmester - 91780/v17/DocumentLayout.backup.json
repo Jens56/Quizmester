@@ -3,20 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|c:\\users\\jensu\\source\\repos\\appr - quizmester - 91780\\quizmester\\appr - quizmester - 91780\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|solutionrelative:appr - quizmester - 91780\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|c:\\users\\jensu\\source\\repos\\appr - quizmester - 91780\\quizmester\\appr - quizmester - 91780\\\u0060loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|solutionrelative:appr - quizmester - 91780\\\u0060loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|c:\\users\\jensu\\source\\repos\\appr - quizmester - 91780\\quizmester\\appr - quizmester - 91780\\quizform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|solutionrelative:appr - quizmester - 91780\\quizform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|c:\\users\\jensu\\source\\repos\\appr - quizmester - 91780\\quizmester\\appr - quizmester - 91780\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|solutionrelative:appr - quizmester - 91780\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|c:\\users\\jensu\\source\\repos\\appr - quizmester - 91780\\quizmester\\appr - quizmester - 91780\\registerform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|solutionrelative:appr - quizmester - 91780\\registerform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|c:\\users\\jensu\\source\\repos\\appr - quizmester - 91780\\quizmester\\appr - quizmester - 91780\\quizform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|solutionrelative:appr - quizmester - 91780\\quizform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|c:\\users\\jensu\\source\\repos\\appr - quizmester - 91780\\quizmester\\appr - quizmester - 91780\\databasehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|solutionrelative:appr - quizmester - 91780\\databasehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|c:\\users\\jensu\\source\\repos\\appr - quizmester - 91780\\quizmester\\appr - quizmester - 91780\\score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|c:\\users\\jensu\\source\\repos\\appr - quizmester - 91780\\quizmester\\appr - quizmester - 91780\\\u0060loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|solutionrelative:appr - quizmester - 91780\\\u0060loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\appr - quizmester - 91780\\score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|solutionrelative:appr - quizmester - 91780\\score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|c:\\users\\jensu\\source\\repos\\appr - quizmester - 91780\\quizmester\\appr - quizmester - 91780\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|solutionrelative:appr - quizmester - 91780\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|c:\\users\\jensu\\source\\repos\\appr - quizmester - 91780\\quizmester\\appr - quizmester - 91780\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{9902D79C-3F52-4C92-A20E-340D83FF651D}|APPR - Quizmester - 91780\\APPR - Quizmester - 91780.csproj|solutionrelative:appr - quizmester - 91780\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,53 +54,115 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "registerForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\registerForm.Designer.cs",
+              "RelativeDocumentMoniker": "APPR - Quizmester - 91780\\registerForm.Designer.cs",
+              "ToolTip": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\registerForm.Designer.cs",
+              "RelativeToolTip": "APPR - Quizmester - 91780\\registerForm.Designer.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAjwGQAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-28T09:56:06.625Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Score.cs",
               "DocumentMoniker": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\Score.cs",
               "RelativeDocumentMoniker": "APPR - Quizmester - 91780\\Score.cs",
               "ToolTip": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\Score.cs",
               "RelativeToolTip": "APPR - Quizmester - 91780\\Score.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBkAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-23T12:28:26.941Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-23T12:28:26.941Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "Databasehandler.cs",
               "DocumentMoniker": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\Databasehandler.cs",
               "RelativeDocumentMoniker": "APPR - Quizmester - 91780\\Databasehandler.cs",
               "ToolTip": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\Databasehandler.cs",
               "RelativeToolTip": "APPR - Quizmester - 91780\\Databasehandler.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAwwFwAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-23T12:21:41.936Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\Form1.cs",
-              "RelativeDocumentMoniker": "APPR - Quizmester - 91780\\Form1.cs",
-              "ToolTip": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\Form1.cs",
-              "RelativeToolTip": "APPR - Quizmester - 91780\\Form1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAswBUAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "registerForm.cs",
+              "DocumentMoniker": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\registerForm.cs",
+              "RelativeDocumentMoniker": "APPR - Quizmester - 91780\\registerForm.cs",
+              "ToolTip": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\registerForm.cs",
+              "RelativeToolTip": "APPR - Quizmester - 91780\\registerForm.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAA4wDwAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-23T12:19:52.992Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "\u0060loginForm.cs",
+              "DocumentMoniker": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\\u0060loginForm.cs",
+              "RelativeDocumentMoniker": "APPR - Quizmester - 91780\\\u0060loginForm.cs",
+              "ToolTip": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\\u0060loginForm.cs",
+              "RelativeToolTip": "APPR - Quizmester - 91780\\\u0060loginForm.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAA1wBcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-28T07:48:55.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "quizForm.cs",
+              "DocumentMoniker": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\quizForm.cs",
+              "RelativeDocumentMoniker": "APPR - Quizmester - 91780\\quizForm.cs",
+              "ToolTip": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\quizForm.cs",
+              "RelativeToolTip": "APPR - Quizmester - 91780\\quizForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-28T09:24:10.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\Form1.cs",
-              "RelativeDocumentMoniker": "APPR - Quizmester - 91780\\Form1.cs",
-              "ToolTip": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\Form1.cs [Design]",
-              "RelativeToolTip": "APPR - Quizmester - 91780\\Form1.cs [Design]",
+              "Title": "registerForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\registerForm.cs",
+              "RelativeDocumentMoniker": "APPR - Quizmester - 91780\\registerForm.cs",
+              "ToolTip": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\registerForm.cs [Design]",
+              "RelativeToolTip": "APPR - Quizmester - 91780\\registerForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-22T11:42:11.47Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "\u0060loginForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\\u0060loginForm.cs",
+              "RelativeDocumentMoniker": "APPR - Quizmester - 91780\\\u0060loginForm.cs",
+              "ToolTip": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\\u0060loginForm.cs [Design]",
+              "RelativeToolTip": "APPR - Quizmester - 91780\\\u0060loginForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-28T07:28:49.702Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "quizForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\quizForm.cs",
+              "RelativeDocumentMoniker": "APPR - Quizmester - 91780\\quizForm.cs",
+              "ToolTip": "C:\\Users\\jensu\\source\\repos\\APPR - Quizmester - 91780\\Quizmester\\APPR - Quizmester - 91780\\quizForm.cs [Design]",
+              "RelativeToolTip": "APPR - Quizmester - 91780\\quizForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-28T09:22:23.263Z",
               "EditorCaption": " [Design]"
             }
           ]

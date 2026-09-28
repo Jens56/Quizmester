@@ -2,10 +2,12 @@ C:\Users\jensu\source\repos\APPR - Quizmester - 91780\Quizmester\APPR - Quizmest
 C:\Users\jensu\source\repos\APPR - Quizmester - 91780\Quizmester\APPR - Quizmester - 91780\bin\Debug\APPR - Quizmester - 91780.exe
 C:\Users\jensu\source\repos\APPR - Quizmester - 91780\Quizmester\APPR - Quizmester - 91780\bin\Debug\APPR - Quizmester - 91780.pdb
 C:\Users\jensu\source\repos\APPR - Quizmester - 91780\Quizmester\APPR - Quizmester - 91780\obj\Debug\APPR - Quizmester - 91780.csproj.AssemblyReference.cache
-C:\Users\jensu\source\repos\APPR - Quizmester - 91780\Quizmester\APPR - Quizmester - 91780\obj\Debug\APPR___Quizmester___91780.Form1.resources
 C:\Users\jensu\source\repos\APPR - Quizmester - 91780\Quizmester\APPR - Quizmester - 91780\obj\Debug\APPR___Quizmester___91780.Properties.Resources.resources
 C:\Users\jensu\source\repos\APPR - Quizmester - 91780\Quizmester\APPR - Quizmester - 91780\obj\Debug\APPR - Quizmester - 91780.csproj.GenerateResource.cache
 C:\Users\jensu\source\repos\APPR - Quizmester - 91780\Quizmester\APPR - Quizmester - 91780\obj\Debug\APPR - Quizmester - 91780.csproj.CoreCompileInputs.cache
 C:\Users\jensu\source\repos\APPR - Quizmester - 91780\Quizmester\APPR - Quizmester - 91780\obj\Debug\APPR - Quizmester - 91780.exe
 C:\Users\jensu\source\repos\APPR - Quizmester - 91780\Quizmester\APPR - Quizmester - 91780\obj\Debug\APPR - Quizmester - 91780.pdb
 C:\Users\jensu\source\repos\APPR - Quizmester - 91780\Quizmester\APPR - Quizmester - 91780\obj\Debug\APPR - Quizmester - 91780.exe.config
+C:\Users\jensu\source\repos\APPR - Quizmester - 91780\Quizmester\APPR - Quizmester - 91780\obj\Debug\APPR___Quizmester___91780.LoginForm.resources
+C:\Users\jensu\source\repos\APPR - Quizmester - 91780\Quizmester\APPR - Quizmester - 91780\obj\Debug\APPR___Quizmester___91780.RegisterForm.resources
+C:\Users\jensu\source\repos\APPR - Quizmester - 91780\Quizmester\APPR - Quizmester - 91780\obj\Debug\APPR___Quizmester___91780.quizForm.resources

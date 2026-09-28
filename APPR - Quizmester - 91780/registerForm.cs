@@ -10,16 +10,18 @@ using System.Windows.Forms;
 
 namespace APPR___Quizmester___91780
 {
-    public partial class Form1 : Form
+    public partial class registerForm : Form
     {
         Databasehandler databasehandler = new Databasehandler();
+        private loginForm login;   
 
-        public Form1()
+        public registerForm(loginForm loginScherm)
         {
             InitializeComponent();
+            login = loginScherm;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void RegisterForm_Load(object sender, EventArgs e)
         {
             txbPassword.PasswordChar = '•';
         }
@@ -40,11 +42,23 @@ namespace APPR___Quizmester___91780
             if (success)
             {
                 MessageBox.Show("Account aangemaakt! Je kan nu inloggen.");
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Deze gebruikersnaam bestaat al.");
             }
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+            login.Show();
+        }
+
+        private void lblLogin_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
