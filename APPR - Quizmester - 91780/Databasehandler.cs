@@ -102,5 +102,28 @@ namespace APPR___Quizmester___91780
                 }
             }
         }
+
+        public List<Question> GetAllQuestions()
+        {
+            List<Question> questions = new List<Question>();
+
+            FillDatatableParam("SELECT * FROM QuestionsTable");
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                int questionId = Convert.ToInt32(row["QuestionID"]);
+                string questionText = row["Question"].ToString();
+                string correctAnswer = row["CorrectAnswer"].ToString();
+                string falseAnswerOne = row["FalseAnswerOne"].ToString();
+                string falseAnswerTwo = row["FalseAnswerTwo"].ToString();
+                string falseAnswerThree = row["FalseAnswerThree"].ToString();
+                string questionType = row["QuestionType"].ToString();
+
+                questions.Add(new Question(questionId, questionText, correctAnswer,
+                                            falseAnswerOne, falseAnswerTwo, falseAnswerThree, questionType));
+            }
+
+            return questions;
+        }
     }
 }
