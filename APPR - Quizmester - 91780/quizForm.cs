@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -23,6 +26,16 @@ namespace APPR___Quizmester___91780
         int quizTime = 60;
         int currentTime = 0;
 
+        int questionTime = 5;
+        int currentQuestionTime = 0;
+
+        int wrongAnswerPenalty = 5;
+
+        bool jokerUsed = false;
+        Image jokerOriginalImage = null;
+
+        private string currentQuizName = "";
+
         public quizForm(loginForm loginScherm, string username)
         {
             InitializeComponent();
@@ -38,13 +51,25 @@ namespace APPR___Quizmester___91780
             tmrQuiz.Tick -= tmrQuiz_Tick;
             tmrQuiz.Tick += tmrQuiz_Tick;
 
+            tmrQuestion.Interval = 1000;
+            tmrQuestion.Tick -= tmrQuestion_Tick;
+            tmrQuestion.Tick += tmrQuestion_Tick;
+
             lblQuestion.Text = "Kies eerst een modus voordat de quiz begint!";
             lblTimer.Text = "";
+            lblTimer.ForeColor = Color.Black;
+            lblQuestionTimer.Text = "";
 
             rbAnswer1.Enabled = false;
             rbAnswer2.Enabled = false;
             rbAnswer3.Enabled = false;
             rbAnswer4.Enabled = false;
+
+            pcbJoker.Enabled = false;
+            jokerOriginalImage = pcbJoker.Image;
+
+            cbxHighscore.Checked = false;
+            lbxHighscore.Visible = false;
 
             allQuestions = databasehandler.GetAllQuestions();
 
@@ -99,6 +124,8 @@ namespace APPR___Quizmester___91780
                 return;
             }
 
+            currentQuizName = questionType ?? "Chaos modus";
+
             btnHistory.Enabled = false;
             btnF1.Enabled = false;
             btnTechnology.Enabled = false;
@@ -109,8 +136,16 @@ namespace APPR___Quizmester___91780
             rbAnswer3.Enabled = true;
             rbAnswer4.Enabled = true;
 
+            jokerUsed = false;
+            pcbJoker.Enabled = true;
+            pcbJoker.Image = jokerOriginalImage;
+
+            cbxHighscore.Checked = false;
+            lbxHighscore.Visible = false;
+
             currentTime = quizTime;
             lblTimer.Text = currentTime.ToString();
+            lblTimer.ForeColor = Color.Black;
             tmrQuiz.Start();
 
             ShuffleList();
@@ -122,11 +157,33 @@ namespace APPR___Quizmester___91780
         private void tmrQuiz_Tick(object sender, EventArgs e)
         {
             currentTime--;
+            if (currentTime < 0)
+            {
+                currentTime = 0;
+            }
+
             lblTimer.Text = currentTime.ToString();
+            lblTimer.ForeColor = (currentTime <= 10) ? Color.Red : Color.Black;
 
             if (currentTime <= 0)
             {
-                EndGame("Tijd is op! Jouw score is: " + score + " van de " + questionList.Count);
+                EndGame("Tijd is op!");
+            }
+        }
+
+        private void tmrQuestion_Tick(object sender, EventArgs e)
+        {
+            currentQuestionTime--;
+            lblQuestionTimer.Text = currentQuestionTime.ToString();
+
+            if (currentQuestionTime <= 0)
+            {
+                bool gameEnded = ApplyWrongAnswerPenalty();
+
+                if (!gameEnded)
+                {
+                    GoToNextQuestion();
+                }
             }
         }
 
@@ -174,6 +231,11 @@ namespace APPR___Quizmester___91780
             rbAnswer2.CheckedChanged += rbAnswer_CheckedChanged;
             rbAnswer3.CheckedChanged += rbAnswer_CheckedChanged;
             rbAnswer4.CheckedChanged += rbAnswer_CheckedChanged;
+
+            currentQuestionTime = questionTime;
+            lblQuestionTimer.Text = currentQuestionTime.ToString();
+            tmrQuestion.Stop();
+            tmrQuestion.Start();
         }
 
         private void ShuffleAnswers()
@@ -198,17 +260,52 @@ namespace APPR___Quizmester___91780
             }
 
             string selectedAnswer = rb.Text;
+            bool gameEnded = false;
 
             if (string.Equals(selectedAnswer, correctAnswer, StringComparison.OrdinalIgnoreCase))
             {
                 score++;
             }
+            else
+            {
+                gameEnded = ApplyWrongAnswerPenalty();
+            }
+
+            if (!gameEnded)
+            {
+                GoToNextQuestion();
+            }
+        }
+
+        private bool ApplyWrongAnswerPenalty()
+        {
+            currentTime -= wrongAnswerPenalty;
+            if (currentTime < 0)
+            {
+                currentTime = 0;
+            }
+
+            lblTimer.Text = currentTime.ToString();
+            lblTimer.ForeColor = (currentTime <= 10) ? Color.Red : Color.Black;
+
+            if (currentTime <= 0)
+            {
+                EndGame("Tijd is op!");
+                return true;
+            }
+
+            return false;
+        }
+
+        private void GoToNextQuestion()
+        {
+            tmrQuestion.Stop();
 
             currentQuestion++;
 
             if (currentQuestion >= questionList.Count)
             {
-                EndGame("Klaar! Jouw score is: " + score + " van de " + questionList.Count);
+                EndGame("Klaar!");
                 return;
             }
 
@@ -217,12 +314,14 @@ namespace APPR___Quizmester___91780
 
         private void EndGame(string message)
         {
-            lblQuestion.Text = message;
+            lblQuestion.Text = message + " Jouw score is " + score;
 
             rbAnswer1.Enabled = false;
             rbAnswer2.Enabled = false;
             rbAnswer3.Enabled = false;
             rbAnswer4.Enabled = false;
+
+            pcbJoker.Enabled = false;
 
             btnHistory.Enabled = true;
             btnF1.Enabled = true;
@@ -230,6 +329,64 @@ namespace APPR___Quizmester___91780
             btnChaosMode.Enabled = true;
 
             tmrQuiz.Stop();
+            tmrQuestion.Stop();
+
+            lblQuestionTimer.Text = "";
+
+            databasehandler.AddNewScore(score, playername, currentQuizName);
+        }
+
+        private void pcbJoker_Click(object sender, EventArgs e)
+        {
+            if (jokerUsed)
+            {
+                return;
+            }
+
+            jokerUsed = true;
+            pcbJoker.Enabled = false;
+            pcbJoker.Image = SetImageOpacity(jokerOriginalImage, 0.35f);
+
+            GoToNextQuestion();
+        }
+
+        private Image SetImageOpacity(Image original, float opacity)
+        {
+            if (original == null)
+            {
+                return null;
+            }
+
+            Bitmap bmp = new Bitmap(original.Width, original.Height);
+
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                ColorMatrix matrix = new ColorMatrix();
+                matrix.Matrix33 = opacity;
+
+                ImageAttributes attributes = new ImageAttributes();
+                attributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                g.DrawImage(original,
+                    new Rectangle(0, 0, bmp.Width, bmp.Height),
+                    0, 0, original.Width, original.Height,
+                    GraphicsUnit.Pixel, attributes);
+            }
+
+            return bmp;
+        }
+
+        private void cbxHighscore_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxHighscore.Checked)
+            {
+                databasehandler.ShowHighScore(lbxHighscore);
+                lbxHighscore.Visible = true;
+            }
+            else
+            {
+                lbxHighscore.Visible = false;
+            }
         }
 
         protected override void OnFormClosed(FormClosedEventArgs e)

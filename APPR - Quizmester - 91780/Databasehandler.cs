@@ -14,13 +14,6 @@ namespace APPR___Quizmester___91780
     {
         string connectionstring = "Data Source=localhost\\sqlexpress;Initial Catalog=Quizmester;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
         DataTable dataTable = null;
-        int maxScore = 10;
-        Score score = null;
-        List<Score> scorelist = null;
-        TimeSpan scoreTime = TimeSpan.Zero;
-        DateTime scoreDate = DateTime.MinValue;
-        string playername = string.Empty;
-        int scorelistcount = 0;
 
         public bool UsernameExists(string username)
         {
@@ -80,7 +73,7 @@ namespace APPR___Quizmester___91780
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
-                using (dataTable = new DataTable("PlayerTable"))
+                using (dataTable = new DataTable("ResultTable"))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddRange(parameters);
@@ -124,6 +117,87 @@ namespace APPR___Quizmester___91780
             }
 
             return questions;
+        }
+
+        public int GetQuizId(string quizName)
+        {
+            FillDatatableParam(
+                "SELECT QuizID FROM QuizzesTable WHERE QuizName = @quizName",
+                new SqlParameter("@quizName", quizName));
+
+            if (dataTable.Rows.Count == 0)
+            {
+                return -1;
+            }
+
+            return Convert.ToInt32(dataTable.Rows[0][0]);
+        }
+
+        public int GetPlayerId(string playername)
+        {
+            FillDatatableParam(
+                "SELECT PlayerID FROM PlayerTable WHERE PlayerName = @playername",
+                new SqlParameter("@playername", playername));
+
+            if (dataTable.Rows.Count == 0)
+            {
+                return -1;
+            }
+
+            return Convert.ToInt32(dataTable.Rows[0][0]);
+        }
+
+        public void AddNewScore(int correctAnswers, string playername, string quizName)
+        {
+            int playerId = GetPlayerId(playername);
+            int quizId = GetQuizId(quizName);
+
+            if (playerId == -1 || quizId == -1)
+            {
+                return;
+            }
+
+            int newRankingId = GetNextRankingId();
+
+            ExecuteQueryParam(
+                "INSERT INTO [dbo].[QuizRankingsTable] ([RankingID], [PlayerID], [QuizID], [Score], [DateDone]) VALUES (@rankingId, @playerId, @quizId, @score, @dateDone)",
+                new SqlParameter("@rankingId", newRankingId),
+                new SqlParameter("@playerId", playerId),
+                new SqlParameter("@quizId", quizId),
+                new SqlParameter("@score", correctAnswers),
+                new SqlParameter("@dateDone", DateTime.Now));
+        }
+
+        private int GetNextRankingId()
+        {
+            FillDatatableParam("SELECT ISNULL(MAX(RankingID), 0) + 1 FROM QuizRankingsTable");
+            return Convert.ToInt32(dataTable.Rows[0][0]);
+        }
+
+        public void ShowHighScore(ListBox updateListbox)
+        {
+            updateListbox.Items.Clear();
+
+            FillDatatableParam(
+                "SELECT r.Score, r.DateDone, p.PlayerName " +
+                "FROM QuizRankingsTable r " +
+                "JOIN PlayerTable p ON r.PlayerID = p.PlayerID " +
+                "ORDER BY r.Score DESC, r.DateDone ASC");
+
+            int count = Math.Min(dataTable.Rows.Count, 10);
+
+            for (int i = 0; i < count; i++)
+            {
+                int scoreValue = Convert.ToInt32(dataTable.Rows[i]["Score"]);
+                DateTime dateDone = Convert.ToDateTime(dataTable.Rows[i]["DateDone"]);
+                string playerName = dataTable.Rows[i]["PlayerName"].ToString();
+
+                updateListbox.Items.Add("Number: " + (i + 1));
+                updateListbox.Items.Add("Player: " + playerName);
+                updateListbox.Items.Add("Score: " + scoreValue);
+                updateListbox.Items.Add("Date played: " + dateDone);
+                updateListbox.Items.Add(" ");
+            }
         }
     }
 }
