@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="adminPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminPanel.Designer.cs">
+      <DependentUpon>adminPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Databasehandler.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="quizForm.cs">
@@ -69,6 +75,9 @@
     <Compile Include="`loginForm.Designer.cs">
       <DependentUpon>`loginForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="adminPanel.resx">
+      <DependentUpon>adminPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="quizForm.resx">
       <DependentUpon>quizForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -42,10 +42,11 @@
             this.lblTimer = new System.Windows.Forms.Label();
             this.tmrQuestion = new System.Windows.Forms.Timer(this.components);
             this.lblQuestionTimer = new System.Windows.Forms.Label();
-            this.pcbJoker = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbxHighscore = new System.Windows.Forms.CheckBox();
             this.lbxHighscore = new System.Windows.Forms.ListBox();
+            this.pcbJoker = new System.Windows.Forms.PictureBox();
+            this.btnAdminPanel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pcbJoker)).BeginInit();
             this.SuspendLayout();
             // 
@@ -158,17 +159,6 @@
             this.lblQuestionTimer.Size = new System.Drawing.Size(0, 13);
             this.lblQuestionTimer.TabIndex = 10;
             // 
-            // pcbJoker
-            // 
-            this.pcbJoker.Image = global::APPR___Quizmester___91780.Properties.Resources.joker;
-            this.pcbJoker.Location = new System.Drawing.Point(697, 393);
-            this.pcbJoker.Name = "pcbJoker";
-            this.pcbJoker.Size = new System.Drawing.Size(100, 50);
-            this.pcbJoker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pcbJoker.TabIndex = 11;
-            this.pcbJoker.TabStop = false;
-            this.pcbJoker.Click += new System.EventHandler(this.pcbJoker_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -197,11 +187,33 @@
             this.lbxHighscore.Size = new System.Drawing.Size(170, 264);
             this.lbxHighscore.TabIndex = 14;
             // 
+            // pcbJoker
+            // 
+            this.pcbJoker.Image = global::APPR___Quizmester___91780.Properties.Resources.joker;
+            this.pcbJoker.Location = new System.Drawing.Point(697, 393);
+            this.pcbJoker.Name = "pcbJoker";
+            this.pcbJoker.Size = new System.Drawing.Size(100, 50);
+            this.pcbJoker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbJoker.TabIndex = 11;
+            this.pcbJoker.TabStop = false;
+            this.pcbJoker.Click += new System.EventHandler(this.pcbJoker_Click);
+            // 
+            // btnAdminPanel
+            // 
+            this.btnAdminPanel.Location = new System.Drawing.Point(115, 93);
+            this.btnAdminPanel.Name = "btnAdminPanel";
+            this.btnAdminPanel.Size = new System.Drawing.Size(75, 23);
+            this.btnAdminPanel.TabIndex = 15;
+            this.btnAdminPanel.Text = "Admin panel";
+            this.btnAdminPanel.UseVisualStyleBackColor = true;
+            this.btnAdminPanel.Click += new System.EventHandler(this.btnAdminPanel_Click);
+            // 
             // quizForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1189, 589);
+            this.Controls.Add(this.btnAdminPanel);
             this.Controls.Add(this.lbxHighscore);
             this.Controls.Add(this.cbxHighscore);
             this.Controls.Add(this.label1);
@@ -245,5 +257,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox cbxHighscore;
         private System.Windows.Forms.ListBox lbxHighscore;
+        private System.Windows.Forms.Button btnAdminPanel;
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APPR___Quizmester___91780
 {
@@ -27,6 +23,11 @@ namespace APPR___Quizmester___91780
             falseAnswerTwo = c_falseAnswerTwo;
             falseAnswerThree = c_falseAnswerThree;
             questionType = c_questionType;
+        }
+
+        public int GetQuestionId()
+        {
+            return questionId;
         }
 
         public string GetQuestion()

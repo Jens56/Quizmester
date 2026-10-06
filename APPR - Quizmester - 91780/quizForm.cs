@@ -394,5 +394,11 @@ namespace APPR___Quizmester___91780
             base.OnFormClosed(e);
             login.Close();
         }
+
+        private void btnAdminPanel_Click(object sender, EventArgs e)
+        {
+            adminPanel admin = new adminPanel(login);
+            admin.Show();
+        }
     }
 }

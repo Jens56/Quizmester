@@ -42,10 +42,19 @@ namespace APPR___Quizmester___91780
                 return;
             }
 
-            if (databasehandler.ValidateLogin(username, password))
+            bool isAdmin;
+            if (databasehandler.ValidateLogin(username, password, out isAdmin))
             {
-                quizForm quiz = new quizForm(this, username);   
-                quiz.Show();
+                if (isAdmin)
+                {
+                    adminPanel admin = new adminPanel(this);
+                    admin.Show();
+                }
+                else
+                {
+                    quizForm quiz = new quizForm(this, username);
+                    quiz.Show();
+                }
                 this.Hide();
             }
             else

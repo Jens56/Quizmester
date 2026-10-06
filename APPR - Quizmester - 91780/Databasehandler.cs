@@ -41,11 +41,13 @@ namespace APPR___Quizmester___91780
             return true;
         }
 
-        public bool ValidateLogin(string username, string password)
+        public bool ValidateLogin(string username, string password, out bool isAdmin)
         {
             FillDatatableParam(
-                "SELECT Password FROM PlayerTable WHERE PlayerName = @username",
+                "SELECT Password, IsAdmin FROM PlayerTable WHERE PlayerName = @username",
                 new SqlParameter("@username", username));
+
+            isAdmin = false;
 
             if (dataTable.Rows.Count == 0)
             {
@@ -55,7 +57,13 @@ namespace APPR___Quizmester___91780
             string storedHash = dataTable.Rows[0][0].ToString();
             string attemptedHash = HashPassword(password);
 
-            return storedHash == attemptedHash;
+            if (storedHash != attemptedHash)
+            {
+                return false;
+            }
+
+            isAdmin = Convert.ToBoolean(dataTable.Rows[0][1]);
+            return true;
         }
 
         private string HashPassword(string password)
@@ -198,6 +206,43 @@ namespace APPR___Quizmester___91780
                 updateListbox.Items.Add("Date played: " + dateDone);
                 updateListbox.Items.Add(" ");
             }
+        }
+        public void UpdateQuestion(int questionId, string question, string correctAnswer,
+                            string falseAnswerOne, string falseAnswerTwo, string falseAnswerThree,
+                            string questionType)
+        {
+            ExecuteQueryParam(
+                "UPDATE QuestionsTable SET Question = @question, CorrectAnswer = @correctAnswer, " +
+                "FalseAnswerOne = @falseAnswerOne, FalseAnswerTwo = @falseAnswerTwo, FalseAnswerThree = @falseAnswerThree, " +
+                "QuestionType = @questionType WHERE QuestionID = @questionId",
+                new SqlParameter("@question", question),
+                new SqlParameter("@correctAnswer", correctAnswer),
+                new SqlParameter("@falseAnswerOne", falseAnswerOne),
+                new SqlParameter("@falseAnswerTwo", falseAnswerTwo),
+                new SqlParameter("@falseAnswerThree", falseAnswerThree),
+                new SqlParameter("@questionType", questionType),
+                new SqlParameter("@questionId", questionId));
+        }
+
+        public void AddQuestion(string question, string correctAnswer, string falseAnswerOne,
+                                 string falseAnswerTwo, string falseAnswerThree, string questionType)
+        {
+            ExecuteQueryParam(
+                "INSERT INTO [dbo].[QuestionsTable] ([Question], [CorrectAnswer], [FalseAnswerOne], [FalseAnswerTwo], [FalseAnswerThree], [QuestionType]) " +
+                "VALUES (@question, @correctAnswer, @falseAnswerOne, @falseAnswerTwo, @falseAnswerThree, @questionType)",
+                new SqlParameter("@question", question),
+                new SqlParameter("@correctAnswer", correctAnswer),
+                new SqlParameter("@falseAnswerOne", falseAnswerOne),
+                new SqlParameter("@falseAnswerTwo", falseAnswerTwo),
+                new SqlParameter("@falseAnswerThree", falseAnswerThree),
+                new SqlParameter("@questionType", questionType));
+        }
+
+        public void DeleteQuestion(int questionId)
+        {
+            ExecuteQueryParam(
+                "DELETE FROM QuestionsTable WHERE QuestionID = @questionId",
+                new SqlParameter("@questionId", questionId));
         }
     }
 }
