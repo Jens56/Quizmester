@@ -227,9 +227,12 @@ namespace APPR___Quizmester___91780
         public void AddQuestion(string question, string correctAnswer, string falseAnswerOne,
                                  string falseAnswerTwo, string falseAnswerThree, string questionType)
         {
+            int newQuestionId = GetNextQuestionId();
+
             ExecuteQueryParam(
-                "INSERT INTO [dbo].[QuestionsTable] ([Question], [CorrectAnswer], [FalseAnswerOne], [FalseAnswerTwo], [FalseAnswerThree], [QuestionType]) " +
-                "VALUES (@question, @correctAnswer, @falseAnswerOne, @falseAnswerTwo, @falseAnswerThree, @questionType)",
+                "INSERT INTO [dbo].[QuestionsTable] ([QuestionID], [Question], [CorrectAnswer], [FalseAnswerOne], [FalseAnswerTwo], [FalseAnswerThree], [QuestionType]) " +
+                "VALUES (@questionId, @question, @correctAnswer, @falseAnswerOne, @falseAnswerTwo, @falseAnswerThree, @questionType)",
+                new SqlParameter("@questionId", newQuestionId),
                 new SqlParameter("@question", question),
                 new SqlParameter("@correctAnswer", correctAnswer),
                 new SqlParameter("@falseAnswerOne", falseAnswerOne),
@@ -238,11 +241,87 @@ namespace APPR___Quizmester___91780
                 new SqlParameter("@questionType", questionType));
         }
 
+        private int GetNextQuestionId()
+        {
+            FillDatatableParam("SELECT ISNULL(MAX(QuestionID), 0) + 1 FROM QuestionsTable");
+            return Convert.ToInt32(dataTable.Rows[0][0]);
+        }
+
         public void DeleteQuestion(int questionId)
         {
             ExecuteQueryParam(
                 "DELETE FROM QuestionsTable WHERE QuestionID = @questionId",
                 new SqlParameter("@questionId", questionId));
+        }
+
+        public List<Player> GetAllPlayers()
+        {
+            List<Player> players = new List<Player>();
+
+            FillDatatableParam("SELECT PlayerID, PlayerName, IsAdmin FROM PlayerTable");
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                int playerId = Convert.ToInt32(row["PlayerID"]);
+                string playerName = row["PlayerName"].ToString();
+                bool isAdmin = Convert.ToBoolean(row["IsAdmin"]);
+
+                players.Add(new Player(playerId, playerName, isAdmin));
+            }
+
+            return players;
+        }
+
+        public bool AddPlayer(string username, string password, bool isAdmin)
+        {
+            if (UsernameExists(username))
+            {
+                return false;
+            }
+
+            ExecuteQueryParam(
+                "INSERT INTO [dbo].[PlayerTable] ([PlayerName], [Password], [IsAdmin]) VALUES (@username, @password, @isAdmin)",
+                new SqlParameter("@username", username),
+                new SqlParameter("@password", HashPassword(password)),
+                new SqlParameter("@isAdmin", isAdmin));
+
+            return true;
+        }
+
+        public bool UpdatePlayer(int playerId, string oldUsername, string newUsername, bool isAdmin, string newPassword)
+        {
+            if (!string.Equals(oldUsername, newUsername, StringComparison.OrdinalIgnoreCase) && UsernameExists(newUsername))
+            {
+                return false;
+            }
+
+            ExecuteQueryParam(
+                "UPDATE PlayerTable SET PlayerName = @username, IsAdmin = @isAdmin WHERE PlayerID = @playerId",
+                new SqlParameter("@username", newUsername),
+                new SqlParameter("@isAdmin", isAdmin),
+                new SqlParameter("@playerId", playerId));
+
+            if (!string.IsNullOrEmpty(newPassword))
+            {
+                ExecuteQueryParam(
+                    "UPDATE PlayerTable SET Password = @password WHERE PlayerID = @playerId",
+                    new SqlParameter("@password", HashPassword(newPassword)),
+                    new SqlParameter("@playerId", playerId));
+            }
+
+            return true;
+        }
+
+        public void DeletePlayer(int playerId)
+        {
+
+            ExecuteQueryParam(
+                "DELETE FROM QuizRankingsTable WHERE PlayerID = @playerId",
+                new SqlParameter("@playerId", playerId));
+
+            ExecuteQueryParam(
+                "DELETE FROM PlayerTable WHERE PlayerID = @playerId",
+                new SqlParameter("@playerId", playerId));
         }
     }
 }

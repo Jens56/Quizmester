@@ -9,9 +9,11 @@ namespace APPR___Quizmester___91780
     {
         private Databasehandler databasehandler = new Databasehandler();
         private List<Question> questionList;
+        private List<Player> playerList;
         private loginForm login;
 
         private Question selectedQuestion = null;
+        private Player selectedPlayer = null;
 
         public adminPanel(loginForm loginScherm)
         {
@@ -27,14 +29,25 @@ namespace APPR___Quizmester___91780
 
         private void adminPanel_Load(object sender, EventArgs e)
         {
+            lbxUsers.SelectedIndexChanged -= lbxUsers_SelectedIndexChanged;
+            lbxUsers.SelectedIndexChanged += lbxUsers_SelectedIndexChanged;
+
             cbxCategory.Items.Clear();
             cbxCategory.Items.Add("Geschiedenis");
             cbxCategory.Items.Add("F1");
             cbxCategory.Items.Add("Technologie");
 
+            cbxIsAdmin.Items.Clear();
+            cbxIsAdmin.Items.Add("Ja");
+            cbxIsAdmin.Items.Add("Nee");
+
+            txbPassword.PasswordChar = '*';
+
             btnDeleteQuestion.Enabled = false;
+            btnDeleteUser.Enabled = false;
 
             LoadQuestions();
+            LoadUsers();
         }
 
         private void LoadQuestions()
@@ -74,7 +87,7 @@ namespace APPR___Quizmester___91780
             btnDeleteQuestion.Enabled = true;
         }
 
-        private void btnOpslaanToevoegen_Click(object sender, EventArgs e)
+        private void btnSaveAddQuestion_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txbAddQuestion.Text) ||
                 string.IsNullOrWhiteSpace(txbRightAnswer.Text) ||
@@ -117,7 +130,7 @@ namespace APPR___Quizmester___91780
             ClearFields();
         }
 
-        private void btnVerwijder_Click(object sender, EventArgs e)
+        private void btnDeleteQuestion_Click(object sender, EventArgs e)
         {
             if (selectedQuestion == null)
             {
@@ -149,6 +162,122 @@ namespace APPR___Quizmester___91780
             cbxCategory.SelectedIndex = -1;
 
             btnDeleteQuestion.Enabled = false;
+        }
+
+        private void LoadUsers()
+        {
+            lbxUsers.Items.Clear();
+
+            playerList = databasehandler.GetAllPlayers();
+
+            foreach (Player p in playerList)
+            {
+                lbxUsers.Items.Add(p.GetPlayerName());
+            }
+        }
+
+        private void lbxUsers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbxUsers.SelectedItem == null)
+            {
+                return;
+            }
+
+            string selectedName = lbxUsers.SelectedItem.ToString();
+            selectedPlayer = playerList.FirstOrDefault(p => p.GetPlayerName() == selectedName);
+
+            if (selectedPlayer == null)
+            {
+                return;
+            }
+
+            txbUsername.Text = selectedPlayer.GetPlayerName();
+            txbPassword.Text = "********"; 
+            cbxIsAdmin.Text = selectedPlayer.GetIsAdmin() ? "Ja" : "Nee";
+
+            btnDeleteUser.Enabled = true;
+        }
+
+        private void btnSaveAddUser_Click(object sender, EventArgs e)
+        {
+            string username = txbUsername.Text.Trim();
+            string password = txbPassword.Text;
+
+            if (string.IsNullOrWhiteSpace(username) || cbxIsAdmin.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vul een naam in en kies of de gebruiker admin is.");
+                return;
+            }
+
+            bool isAdmin = cbxIsAdmin.Text == "Ja";
+
+            if (selectedPlayer == null)
+            {
+                if (string.IsNullOrWhiteSpace(password))
+                {
+                    MessageBox.Show("Vul een wachtwoord in voor de nieuwe gebruiker.");
+                    return;
+                }
+
+                if (!databasehandler.AddPlayer(username, password, isAdmin))
+                {
+                    MessageBox.Show("Deze gebruikersnaam bestaat al.");
+                    return;
+                }
+
+                MessageBox.Show("Gebruiker toegevoegd.");
+            }
+            else
+            {
+                string newPassword = (password == "********") ? "" : password;
+
+                if (!databasehandler.UpdatePlayer(
+                        selectedPlayer.GetPlayerId(),
+                        selectedPlayer.GetPlayerName(),
+                        username,
+                        isAdmin,
+                        newPassword))
+                {
+                    MessageBox.Show("Deze gebruikersnaam bestaat al.");
+                    return;
+                }
+
+                MessageBox.Show("Gebruiker bijgewerkt.");
+            }
+
+            LoadUsers();
+            ClearUserFields();
+        }
+
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+            if (selectedPlayer == null)
+            {
+                return;
+            }
+
+            DialogResult result = MessageBox.Show(
+                "Weet je zeker dat je " + selectedPlayer.GetPlayerName() + "(en " + selectedPlayer.GetPlayerName() + "'s scores) wilt verwijderen?",
+                "Bevestigen", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                databasehandler.DeletePlayer(selectedPlayer.GetPlayerId());
+                LoadUsers();
+                ClearUserFields();
+            }
+        }
+
+        private void ClearUserFields()
+        {
+            selectedPlayer = null;
+            lbxUsers.ClearSelected();
+
+            txbUsername.Text = "";
+            txbPassword.Text = "";
+            cbxIsAdmin.SelectedIndex = -1;
+
+            btnDeleteUser.Enabled = false;
         }
     }
 }

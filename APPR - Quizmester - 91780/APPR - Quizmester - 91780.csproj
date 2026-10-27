@@ -53,6 +53,7 @@
       <DependentUpon>adminPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Databasehandler.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="quizForm.cs">
       <SubType>Form</SubType>
